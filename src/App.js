@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import GamesProvider from './context/PortfolioProvider';
+import GamesProvider from './context/GamesProvider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';

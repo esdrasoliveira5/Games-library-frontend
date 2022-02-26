@@ -1,80 +1,40 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import styled from 'styled-components';
 import Footer from '../components/Footer';
+import FormsLogin from '../components/FormsLogin';
 import Header from '../components/Header';
-import loginValidate from '../helpers/loginValidate';
-import { loginUser } from '../services/gameLibraryApi';
+
+const BigContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #0B090A 0%, #660708 100%);
+`;
+const MainContainer = styled.main`
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 330px;
+  width: 100%;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+`;
 
 function Login() {
-  const navigate = useNavigate();
-  const [loginValues, setLoginValues] = useState({
-    email: '',
-    password: '',
-  });
-
-  function handleLogin({ target }) {
-    const { name, value } = target;
-    setLoginValues({
-      ...loginValues,
-      [name]: value,
-    });
-  }
-
-  async function sendLogin() {
-    const validation = loginValidate(loginValues);
-    if (validation === 'Logando Usuario') {
-      const result = await loginUser(loginValues);
-      if (result.token) {
-        localStorage.setItem('game-library', JSON.stringify({ token: result.token }));
-        global.alert('Bem Vindo!');
-        navigate('/home');
-      } else {
-        global.alert(result.error);
-      }
-    }
-  }
-
-  const { email, password } = loginValues;
   return (
-    <div>
+    <BigContainer>
       <Header />
-      <div>
+      <MainContainer>
         <h1>Login</h1>
-        <label htmlFor="email">
-          <input
-            name="email"
-            type="text"
-            value={email}
-            onChange={(event) => handleLogin(event)}
-          />
-          email
-        </label>
-        <label htmlFor="password">
-          <input
-            name="password"
-            type="text"
-            value={password}
-            onChange={(event) => handleLogin(event)}
-          />
-          password
-        </label>
-        <button
-          type="button"
-          onClick={sendLogin}
-        >
-          Login
-        </button>
-      </div>
-      <Link to="/register">
-        <button
-          type="button"
-        >
-          Cadastrar
-
-        </button>
-      </Link>
+        <FormsLogin />
+      </MainContainer>
       <Footer />
-    </div>
+    </BigContainer>
   );
 }
 
