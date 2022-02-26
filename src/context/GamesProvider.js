@@ -3,11 +3,14 @@ import React, { useState, useMemo } from 'react';
 import gamesContext from './AppContext';
 
 function GamesProvider({ children }) {
+  const [logged, setLogged] = useState(true);
   const [games, setGames] = useState([]);
   const contextValue = useMemo(() => ({
+    logged,
+    setLogged,
     games,
     setGames,
-  }), [games, setGames]);
+  }), [logged, games]);
 
   return (
     <gamesContext.Provider value={contextValue}>

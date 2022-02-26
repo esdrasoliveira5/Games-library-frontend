@@ -23,11 +23,11 @@ const FormRegisters = styled.form`
     background: #dbdbdb;
   }
 `;
-const ButtonRed = styled.button`
-    outline: 0;
-    background: #E5383B;
-    border: 0;
-    border-radius: 5px;
+const ButtonRed = styled.div`
+  outline: 0;
+  background: #E5383B;
+  border: 0;
+  border-radius: 5px;
   button {
     text-transform: uppercase;
     outline: 0;
@@ -42,6 +42,9 @@ const ButtonRed = styled.button`
     transition: all 0.3 ease;
     cursor: pointer;
   }
+  button:hover {
+    background-color: #660708;
+  }
 `;
 
 function FormRegister() {
@@ -52,7 +55,7 @@ function FormRegister() {
     email: '',
     password: '',
     passwordConfirm: '',
-    picture: 'masterchief',
+    avatar: 'https://avatarfiles.alphacoders.com/183/183310.jpg',
   });
 
   function handleInfo({ target }) {
@@ -82,7 +85,7 @@ function FormRegister() {
   } = registerInfo;
   return (
     <FormRegisters>
-      <Avatar />
+      <Avatar avatar={{ registerInfo, setRegisterInfo }} />
       <label htmlFor="name">
         <input
           type="text"

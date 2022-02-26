@@ -36,6 +36,9 @@ const FormLogin = styled.form`
     transition: all 0.3 ease;
     cursor: pointer;
   }
+  button:hover {
+    background-color: #660708;
+  }
 `;
 
 function FormsLogin() {
@@ -84,7 +87,7 @@ function FormsLogin() {
       <label htmlFor="password">
         <input
           name="password"
-          type="text"
+          type="password"
           value={password}
           placeholder="Password"
           onChange={(event) => handleLogin(event)}

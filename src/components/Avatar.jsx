@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -84,7 +85,7 @@ const AvatarBox = styled.div`
   }
 `;
 
-function Avatar() {
+function Avatar({ avatar: { registerInfo, setRegisterInfo } }) {
   const [avatar, setAvatar] = useState({
     src: 'https://avatarfiles.alphacoders.com/183/183310.jpg',
     alt: 'Master-chief',
@@ -96,6 +97,10 @@ function Avatar() {
       src: target.src,
       alt: target.alt,
       open: !avatar.open,
+    });
+    setRegisterInfo({
+      ...registerInfo,
+      avatar: target.src,
     });
   }
   const { src, alt, open } = avatar;
@@ -133,5 +138,12 @@ function Avatar() {
     </AvatarBox>
   );
 }
+
+Avatar.propTypes = {
+  avatar: PropTypes.objectOf({
+    registerInfo: PropTypes.objectOf(PropTypes.string).isRequired,
+    setRegisterInfo: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Avatar;

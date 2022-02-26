@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
 import FormRegister from '../components/FormRegister';
 import Header from '../components/Header';
+import gamesContext from '../context/AppContext';
 import Mario from '../img/Mario.png';
+import { getUser } from '../services/gameLibraryApi';
 
 const BigContainer = styled.div`
   display: flex;
@@ -43,20 +46,44 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  z-index: 1;
 `;
 
 function Register() {
+  const navigate = useNavigate();
+  const { logged, setLogged } = useContext(gamesContext);
+  useEffect(() => {
+    const userLogged = async () => {
+      const localResponse = JSON.parse(localStorage.getItem('game-library'));
+      if (localResponse !== null) {
+        const { token } = localResponse;
+        const response = await getUser(token);
+        if (!response.error) {
+          setLogged(true);
+          navigate('/home');
+        } else {
+          setLogged(false);
+        }
+      } else {
+        setLogged(false);
+      }
+    };
+    userLogged();
+  }, [logged]);
   return (
     <BigContainer>
       <Header />
-      <Container>
-        <MainContainer>
-          <h1>Cadastrar</h1>
-          <FormRegister />
-        </MainContainer>
-        <img src={Mario} alt="ff" height="900px" />
-      </Container>
+      {
+          !logged ? (
+            <Container>
+              <MainContainer>
+                <h1>Cadastrar</h1>
+                <FormRegister />
+              </MainContainer>
+              <img src={Mario} alt="mario" height="900px" />
+            </Container>
+          )
+            : ''
+        }
       <Footer />
     </BigContainer>
   );
