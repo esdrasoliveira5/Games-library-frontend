@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const HeaderS = styled.header`
 @media screen and (max-width: 768px) {
   flex-direction: column;
-  height: 20%;
+  height: 10%;
 }
 padding: 10px;
 display: flex;
