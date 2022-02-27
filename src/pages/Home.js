@@ -55,7 +55,7 @@ function Home() {
   const navigate = useNavigate();
   const { logged, setLogged } = useContext(gamesContext);
   const { searchContext, setSearchContext } = useContext(gamesContext);
-  const { setGames, setgenres } = useContext(gamesContext);
+  const { games, setGames, setgenres } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
@@ -65,7 +65,9 @@ function Home() {
         const gamesResponse = await Rawg.fetchGamesPages(1);
         const genresResponse = await Rawg.fetchGamesgenres();
         if (!response.error) {
-          setGames(gamesResponse.results);
+          if (games.length === 0) {
+            setGames(gamesResponse.results);
+          }
           setgenres(genresResponse.results);
           setLogged(true);
         } else {
@@ -78,7 +80,7 @@ function Home() {
       }
     };
     userLogged();
-  }, [logged]);
+  }, []);
 
   const {
     on, search, ordering, page,
