@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import gamesContext from '../context/AppContext';
+import Rawg from '../services/fetchRawg';
 
 const CardStyled = styled.div`
   width: 20%;
@@ -27,7 +28,7 @@ const CardStyled = styled.div`
     transition: all .5s ease-in-out;
     cursor: pointer;
     border-radius: 10px;
-    a {
+    button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -40,7 +41,7 @@ const CardStyled = styled.div`
         text-decoration: none;
         color: #0B090A;
       }
-      a:hover {
+      button:hover {
         opacity: 100;
         background-color: rgb(237, 242, 244,0.4);
       }
@@ -50,24 +51,41 @@ const CardStyled = styled.div`
   }
 `;
 
-function GamesCard({
-  id, name, background,
+function CategorieCard({
+  id, name, background, slug,
 }) {
+  const { setGenresSearch, setGames } = useContext(gamesContext);
+  const { searchContext, setSearchContext } = useContext(gamesContext);
+
+  async function handleCategories() {
+    const gamesGenre = await Rawg.fetchGamesByGenre(1, slug);
+    console.log(gamesGenre);
+    setGames(gamesGenre.results);
+    setSearchContext({
+      ...searchContext,
+      on: false,
+    });
+    setGenresSearch(false);
+  }
   return (
     <CardStyled>
       <div key={id} style={{ backgroundImage: `url(${background})` }}>
-        <Link to={`/game/${id}`}>
+        <button
+          type="button"
+          onClick={handleCategories}
+        >
           <p>{name}</p>
-        </Link>
+        </button>
       </div>
     </CardStyled>
   );
 }
 
-GamesCard.propTypes = {
+CategorieCard.propTypes = {
   background: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
-export default GamesCard;
+export default CategorieCard;

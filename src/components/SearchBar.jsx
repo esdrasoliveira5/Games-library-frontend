@@ -129,14 +129,11 @@ function SearchBar() {
       ordering,
       page,
     });
+    setGenresSearch(false);
   }
 
   function searchgenres() {
-    if (genresSearch === true) {
-      setGenresSearch(false);
-    } else {
-      setGenresSearch(true);
-    }
+    setGenresSearch(!genresSearch);
   }
 
   return (

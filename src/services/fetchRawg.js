@@ -45,9 +45,21 @@ const fetchGamesgenres = async () => {
   }
 };
 
+const fetchGamesByGenre = async (page, genre) => {
+  try {
+    const response = await fetch(`${URL_RAWG}&page=${page}&page_size=20&genres=${genre}`);
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { message: error };
+  }
+};
+
 export default {
   fetchGamesPages,
   fetchSearchGames,
   fetchGameId,
   fetchGamesgenres,
+  fetchGamesByGenre,
 };

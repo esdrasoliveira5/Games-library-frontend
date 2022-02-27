@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
+import CategorieCard from './CategorieCard';
 import GamesCard from './GamesCard';
 
 const GamesBox = styled.div`
@@ -36,9 +37,9 @@ function HomeGamesPage() {
             }),
           ) : genres.map(
             ({
-              id, name, image_background: background,
-            }) => GamesCard({
-              id, name, background,
+              id, name, image_background: background, slug,
+            }) => CategorieCard({
+              id, name, background, slug,
             }),
           )
       }
