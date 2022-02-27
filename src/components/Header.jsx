@@ -12,10 +12,10 @@ const HeaderS = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
-
   z-index: 10;
   background-color: #161A1D;
   color: #F5F3F4;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   img {
     width: 200px;
   }

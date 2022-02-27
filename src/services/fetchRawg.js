@@ -1,5 +1,6 @@
 const URL_RAWG = 'https://api.rawg.io/api/games?key=f53f83cd1797486ba34f66d64fd0418e';
 const URL_RAWG_GENRES = 'https://api.rawg.io/api/genres?key=f53f83cd1797486ba34f66d64fd0418e';
+
 const fetchGamesPages = async (page) => {
   try {
     const response = await fetch(`${URL_RAWG}&page=${page}&page_size=20`);
@@ -13,7 +14,18 @@ const fetchGamesPages = async (page) => {
 
 const fetchSearchGames = async (page, ordering, search) => {
   try {
-    const response = await fetch(`${URL_RAWG}&page=${page}&page_size=20&ordering=${ordering}&search=${search}`);
+    const response = await fetch(`${URL_RAWG}&page=${page}&page_size=20&ordering=-${ordering}&search=${search}`);
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { message: error };
+  }
+};
+
+const fetchGameId = async (id, movie) => {
+  try {
+    const response = await fetch(`https://api.rawg.io/api/games/${id}${movie}?key=f53f83cd1797486ba34f66d64fd0418e`);
     const results = await response.json();
     return results;
   } catch (error) {
@@ -36,5 +48,6 @@ const fetchGamesgenres = async () => {
 export default {
   fetchGamesPages,
   fetchSearchGames,
+  fetchGameId,
   fetchGamesgenres,
 };

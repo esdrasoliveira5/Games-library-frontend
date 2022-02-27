@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import DescriptionGame from '../components/DescriptionGame';
 import Footer from '../components/Footer';
-import FormRegister from '../components/FormRegister';
 import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
-import Mario from '../img/Mario.png';
+import Halo from '../img/Halo.png';
+import Rawg from '../services/fetchRawg';
 import { getUser } from '../services/gameLibraryApi';
 
 const BigContainer = styled.div`
@@ -16,46 +17,45 @@ const BigContainer = styled.div`
   position: relative;
   min-height: 100vh;
   background: linear-gradient(90deg, #E5383B 0%, #660708 100%);
+  overflow: hidden;
 `;
 
-const MainContainer = styled.main`
-  @media screen and (max-width: 1100px) {
-    position: absolute;
-    width: 70%;
-  }
-  @media screen and (max-width: 350px) {
-    position: absolute;
-    width: 100%;
-  }
-  z-index: 1;
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border-radius: 10px;
-  max-width: 500px;
-  padding: 45px;
-  text-align: center;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  overflow: scroll;
+  overflow: hidden;
+`;
+
+const Container = styled.main`
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
-function Register() {
+const Image = styled.img`
+    padding-top: 10%;
+    height: 110%;
+    position: absolute;
+    z-index: 0;
+    left: 25%;
+`;
+
+function Description() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = Number(location.pathname.split('/')[2]);
+  const [game, setGame] = useState({});
   const { logged, setLogged } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
@@ -63,36 +63,40 @@ function Register() {
       if (localResponse !== null) {
         const { token } = localResponse;
         const response = await getUser(token);
+        const gameResponse = await Rawg.fetchGameId(path, '');
         if (!response.error) {
+          if (!game.id) {
+            setGame(gameResponse);
+          }
           setLogged(true);
-          navigate('/home');
         } else {
           setLogged(false);
+          navigate('/');
         }
       } else {
         setLogged(false);
+        navigate('/');
       }
     };
     userLogged();
-  }, [logged]);
+  }, []);
   return (
     <BigContainer>
       <Header />
       {
-          !logged ? (
+        logged && game.id !== undefined ? (
+          <MainContainer>
             <Container>
-              <MainContainer>
-                <h1>Cadastrar</h1>
-                <FormRegister />
-              </MainContainer>
-              <img src={Mario} alt="mario" height="900px" />
+              <Image src={Halo} alt="Master Chief" />
+              <DescriptionGame game={game} />
             </Container>
-          )
-            : ''
-        }
+          </MainContainer>
+        ) : ''
+
+      }
       <Footer />
     </BigContainer>
   );
 }
 
-export default Register;
+export default Description;

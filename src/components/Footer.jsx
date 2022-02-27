@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import Github from '../img/Github.png';
 
 const FooterS = styled.footer`
-background-color: #0B090A;
-color: #F5F3F4;
-display: flex;
-justify-content: space-around;
-align-items: center;
-height: 80px;
-position: absolute;
-bottom: 0;
-width: 100%;
+  background-color: #0B090A;
+  color: #F5F3F4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
 `;
 
 function Footer() {

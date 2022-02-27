@@ -26,6 +26,7 @@ div {
   height: 100%;
   transition: all .5s ease-in-out;
   cursor: pointer;
+  border-radius: 10px;
   a {
       display: flex;
       align-items: center;
@@ -55,7 +56,7 @@ function GamesCard({
   return (
     <CardStyled>
       <div key={id} style={{ backgroundImage: `url(${background})` }}>
-        <Link to="/game">
+        <Link to={`/game/${id}`}>
           <p>{name}</p>
         </Link>
       </div>

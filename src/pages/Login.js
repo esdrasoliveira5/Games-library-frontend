@@ -29,7 +29,8 @@ const Container = styled.main`
   }
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
   border-radius: 10px;
   max-width: 350px;
   width: 100%;

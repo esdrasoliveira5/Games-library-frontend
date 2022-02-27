@@ -65,7 +65,6 @@ const AvatarBox = styled.div`
   div {
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
     border-radius: 10px;
     max-width: 500px;
     margin: 0 auto 100px;
@@ -76,12 +75,17 @@ const AvatarBox = styled.div`
     right: 0%;
     padding: 10px;
     button {
-      border: 0;
+      background:none;
+      border:none;
+      margin:0;
+      padding:0;
       cursor: pointer;
     }
   }
   img {
-    width: 145px;
+    width: 135px;
+    padding: 2px;
+    border-radius: 10px;
   }
 `;
 
@@ -127,7 +131,6 @@ function Avatar({ avatar: { registerInfo, setRegisterInfo } }) {
               <img
                 src={src}
                 alt={alt}
-                width="100px"
                 name="avatar"
                 onClick={handleAvatar}
               />

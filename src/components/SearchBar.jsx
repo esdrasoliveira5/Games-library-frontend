@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
 
 const SearchBarForm = styled.form`
+  width: 55%;
+  @media screen and (max-width: 1000px) {
+    width: 70%;
+  }
   @media screen and (max-width: 700px) {
     width: 100%;
   }
@@ -11,7 +15,6 @@ const SearchBarForm = styled.form`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 60%;
 `;
 
 const LabelSearch = styled.label`
