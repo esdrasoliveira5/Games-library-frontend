@@ -5,21 +5,20 @@ import gamesContext from '../context/AppContext';
 import Logo from '../img/Logo2.png';
 
 const HeaderS = styled.header`
-@media screen and (max-width: 768px) {
-  flex-direction: column;
-  height: 10%;
-}
-padding: 10px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: fixed;
-top: 0;
-width: 100%;
-height: 60px;
-z-index: 1;
-background-color: #161A1D;
-color: #F5F3F4;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  z-index: 10;
+  background-color: #161A1D;
+  color: #F5F3F4;
+  img {
+    width: 200px;
+  }
 `;
 
 const NavS = styled.nav`
@@ -49,7 +48,7 @@ function Header() {
   return (
     <HeaderS>
       <Link to="/home">
-        <img src={Logo} alt="logo" width="300px" />
+        <img src={Logo} alt="logo" />
       </Link>
       {
         !logged

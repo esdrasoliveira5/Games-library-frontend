@@ -4,13 +4,26 @@ import gamesContext from './AppContext';
 
 function GamesProvider({ children }) {
   const [logged, setLogged] = useState(true);
+  const [searchContext, setSearchContext] = useState({
+    search: '',
+    ordering: 'name',
+    page: 1,
+  });
+  const [genresSearch, setGenresSearch] = useState(false);
   const [games, setGames] = useState([]);
+  const [genres, setgenres] = useState([]);
   const contextValue = useMemo(() => ({
     logged,
     setLogged,
+    searchContext,
+    setSearchContext,
     games,
     setGames,
-  }), [logged, games]);
+    genresSearch,
+    setGenresSearch,
+    genres,
+    setgenres,
+  }), [logged, searchContext, games, genres, genresSearch]);
 
   return (
     <gamesContext.Provider value={contextValue}>
