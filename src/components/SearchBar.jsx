@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
 
@@ -86,7 +87,7 @@ const ButtonSearchR = styled.div`
     text-decoration: none;
     text-transform: uppercase;
     outline: 0;
-    background: #E5383B;
+    background: #2dc653;
     border: 0;
     border-radius: 0px 5px 5px 0px;
     padding: 10px;
@@ -97,17 +98,17 @@ const ButtonSearchR = styled.div`
     cursor: pointer;
   }
   button:hover {
-    background-color: #660708;
+    background-color: #155d27;
   }
 `;
 
 function SearchBar() {
+  const navigate = useNavigate();
   const { setSearchContext } = useContext(gamesContext);
-  const { genresSearch, setGenresSearch } = useContext(gamesContext);
   const [searchValues, setSearchValues] = useState({
-    on: true,
     search: '',
     ordering: 'name',
+    genre: '',
     page: 1,
   });
 
@@ -120,20 +121,20 @@ function SearchBar() {
   }
 
   function searchGames() {
-    const {
-      on, search, ordering, page,
-    } = searchValues;
     setSearchContext({
-      on,
-      search,
-      ordering,
-      page,
+      ...searchValues,
+      searchBar: true,
+      searchGenres: false,
     });
-    setGenresSearch(false);
   }
 
   function searchgenres() {
-    setGenresSearch(!genresSearch);
+    setSearchContext({
+      ...searchValues,
+      searchBar: false,
+      searchGenres: true,
+    });
+    navigate('/categories');
   }
 
   return (

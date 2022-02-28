@@ -5,11 +5,13 @@ import gamesContext from './AppContext';
 function GamesProvider({ children }) {
   const [logged, setLogged] = useState(true);
   const [searchContext, setSearchContext] = useState({
+    searchBar: false,
+    searchGenres: false,
     search: '',
     ordering: 'name',
+    genre: '',
     page: 1,
   });
-  const [genresSearch, setGenresSearch] = useState(false);
   const [games, setGames] = useState([]);
   const [genres, setgenres] = useState([]);
   const contextValue = useMemo(() => ({
@@ -19,11 +21,9 @@ function GamesProvider({ children }) {
     setSearchContext,
     games,
     setGames,
-    genresSearch,
-    setGenresSearch,
     genres,
     setgenres,
-  }), [logged, searchContext, games, genres, genresSearch]);
+  }), [logged, searchContext, games, genres]);
 
   return (
     <gamesContext.Provider value={contextValue}>

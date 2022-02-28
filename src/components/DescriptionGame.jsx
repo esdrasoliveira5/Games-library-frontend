@@ -96,7 +96,6 @@ function DescriptionGame({ game }) {
   const toggleReadMore = () => {
     setIsReadMore(!isReadMore);
   };
-  console.log(platforms);
   return (
     <DescriptionContainer>
       <DescriptionsImages>

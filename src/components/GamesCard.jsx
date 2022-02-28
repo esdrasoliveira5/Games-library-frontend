@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Logo from '../img/Logo.png';
 
 const CardStyled = styled.div`
   width: 20%;
@@ -55,7 +56,7 @@ function GamesCard({
 }) {
   return (
     <CardStyled>
-      <div key={id} style={{ backgroundImage: `url(${background})` }}>
+      <div key={id} style={{ backgroundImage: `url(${background === null ? Logo : background})` }}>
         <Link to={`/game/${id}`}>
           <p>{name}</p>
         </Link>

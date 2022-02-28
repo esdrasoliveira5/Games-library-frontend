@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
-import GamesCard from './GamesCard';
+import CategorieCard from './CategorieCard';
 
 const GamesBox = styled.div`
   width: 60%;
@@ -22,21 +22,21 @@ const GamesBox = styled.div`
     z-index: 1;
 `;
 
-function HomeGamesPage() {
-  const { games } = useContext(gamesContext);
+function CategoriesPage() {
+  const { genres } = useContext(gamesContext);
   return (
     <GamesBox>
       {
-        games ? games.map(
+        genres.map(
           ({
-            id, name, background_image: background,
-          }) => GamesCard({
-            id, name, background,
+            id, name, image_background: background, slug,
+          }) => CategorieCard({
+            id, name, background, slug,
           }),
-        ) : ''
+        )
       }
     </GamesBox>
   );
 }
 
-export default HomeGamesPage;
+export default CategoriesPage;

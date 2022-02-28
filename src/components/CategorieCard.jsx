@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
-import Rawg from '../services/fetchRawg';
 
 const CardStyled = styled.div`
   width: 20%;
@@ -54,18 +54,18 @@ const CardStyled = styled.div`
 function CategorieCard({
   id, name, background, slug,
 }) {
-  const { setGenresSearch, setGames } = useContext(gamesContext);
+  const navigate = useNavigate();
   const { searchContext, setSearchContext } = useContext(gamesContext);
 
   async function handleCategories() {
-    const gamesGenre = await Rawg.fetchGamesByGenre(1, slug);
-    console.log(gamesGenre);
-    setGames(gamesGenre.results);
     setSearchContext({
       ...searchContext,
-      on: false,
+      page: 1,
+      genre: slug,
+      searchGenres: true,
+      searchBar: false,
     });
-    setGenresSearch(false);
+    navigate('/home');
   }
   return (
     <CardStyled>

@@ -6,10 +6,8 @@ import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
 import { getUser } from '../services/gameLibraryApi';
 import Rawg from '../services/fetchRawg';
-import HomeGamesPage from '../components/HomeGamesPage';
 import Tifa from '../img/Tifa.png';
-import SearchBar from '../components/SearchBar';
-import ArrowPages from '../components/ArrowPages';
+import CategoriesPage from '../components/Categories';
 
 const BigContainer = styled.div`
   display: flex;
@@ -49,25 +47,23 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin-top: 150px;
   width: 100%;
 `;
 
-function Home() {
+function Categories() {
   const navigate = useNavigate();
   const { logged, setLogged } = useContext(gamesContext);
-  const { searchContext } = useContext(gamesContext);
-  const { games, setGames } = useContext(gamesContext);
+  const { setgenres } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
         const response = await getUser(token);
-        const gamesResponse = await Rawg.fetchGamesPages(1);
+        const genresResponse = await Rawg.fetchGamesgenres();
         if (!response.error) {
-          if (games.length === 0) {
-            setGames(gamesResponse.results);
-          }
+          setgenres(genresResponse.results);
           setLogged(true);
         } else {
           setLogged(false);
@@ -80,38 +76,16 @@ function Home() {
     };
     userLogged();
   }, []);
-
-  useEffect(() => {
-    const {
-      searchBar, searchGenres, search, ordering, page, genre,
-    } = searchContext;
-    const searchGames = async () => {
-      const gamesResponse = await Rawg.fetchSearchGames(page, ordering, search);
-      setGames(gamesResponse.results);
-    };
-    const searchCategorieGames = async () => {
-      const gamesGenre = await Rawg.fetchGamesByGenre(page, genre);
-      setGames(gamesGenre.results);
-    };
-    if (searchBar === true) {
-      searchGames();
-    } else if (searchGenres === true) {
-      searchCategorieGames();
-    }
-  }, [searchContext]);
   return (
     <BigContainer>
       <Header />
       {
         logged ? (
           <MainContainer>
-            <SearchBar />
+            <h1>Categorias</h1>
             <Container>
-              {
-                searchContext.searchBar === true || searchContext.searchGenres === true ? <ArrowPages /> : ''
-              }
               <img src={Tifa} alt="" />
-              <HomeGamesPage />
+              <CategoriesPage />
             </Container>
           </MainContainer>
         ) : ''
@@ -121,4 +95,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Categories;
