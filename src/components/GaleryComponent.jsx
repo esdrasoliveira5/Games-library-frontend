@@ -8,7 +8,7 @@ const DescriptionsImages = styled.div`
   width: 50%;
   padding: 10px;
   @media screen and (max-width: 1000px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 
@@ -17,6 +17,7 @@ const BigPicture = styled.div`
   width: 100%;
   margin:0 auto;
   overflow: hidden;
+  width:100%;
   img {
     width: 100%;
     -webkit-transition: opacity 1s ease-in-out;
