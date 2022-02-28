@@ -12,13 +12,17 @@ const DescriptionContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 80%;
   z-index: 1;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   backdrop-filter: blur(8px);
   @media screen and (max-width: 1000px) {
     width: 80%;
+    flex-direction: column;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
     flex-direction: column;
   }
   img {

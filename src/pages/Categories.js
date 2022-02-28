@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
 import { getUser } from '../services/gameLibraryApi';
 import Rawg from '../services/fetchRawg';
-import Tifa from '../img/Tifa.png';
+import BlackFlag from '../img/BlackFlag.png';
 import CategoriesPage from '../components/Categories';
 
 const BigContainer = styled.div`
@@ -36,10 +36,10 @@ const Container = styled.main`
     @media screen and (max-width: 1000px) {
       left: 40%;
     }
-    height: 1500px;
+    height: 1100px;
     position: absolute;
     z-index: 0;
-    left: 70%;
+    left: -10%;
   }
 `;
 const MainContainer = styled.div`
@@ -84,7 +84,7 @@ function Categories() {
           <MainContainer>
             <h1>Categorias</h1>
             <Container>
-              <img src={Tifa} alt="" />
+              <img src={BlackFlag} alt="" />
               <CategoriesPage />
             </Container>
           </MainContainer>
