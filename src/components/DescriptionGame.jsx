@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import GaleryComponent from './GaleryComponent';
 
 const DescriptionContainer = styled.div`
   color: #F5F3F4;
@@ -24,18 +26,6 @@ const DescriptionContainer = styled.div`
   @media screen and (max-width: 600px) {
     width: 100%;
     flex-direction: column;
-  }
-  img {
-    width: 100%;
-  }
-`;
-
-const DescriptionsImages = styled.div`
-  height: 100%;
-  width: 40%;
-  padding: 10px;
-  @media screen and (max-width: 1000px) {
-    width: 80%;
   }
 `;
 
@@ -82,7 +72,7 @@ const Fields = styled.div`
   }
 `;
 
-function DescriptionGame({ game }) {
+function DescriptionGame({ game, screenshoots }) {
   const {
     name,
     description,
@@ -102,10 +92,10 @@ function DescriptionGame({ game }) {
   };
   return (
     <DescriptionContainer>
-      <DescriptionsImages>
-        <img src={backgroundImage} alt="" />
-        <img src={backgroundImageExtra} alt="" />
-      </DescriptionsImages>
+      <GaleryComponent
+        images={screenshoots}
+        background={{ img: backgroundImage, extra: backgroundImageExtra }}
+      />
       <DescriptionsText>
         <h1>{name}</h1>
         <Text>
@@ -143,6 +133,7 @@ DescriptionGame.propTypes = {
     rating: PropTypes.string.isRequired,
     released: PropTypes.string.isRequired,
   }).isRequired,
+  screenshoots: PropTypes.arrayOf(PropTypes.objectOf({})).isRequired,
 };
 
 export default DescriptionGame;

@@ -23,9 +23,9 @@ const fetchSearchGames = async (page, ordering, search) => {
   }
 };
 
-const fetchGameId = async (id, movie) => {
+const fetchGameId = async (id, parameter) => {
   try {
-    const response = await fetch(`https://api.rawg.io/api/games/${id}${movie}?key=f53f83cd1797486ba34f66d64fd0418e`);
+    const response = await fetch(`https://api.rawg.io/api/games/${id}${parameter}?key=f53f83cd1797486ba34f66d64fd0418e`);
     const results = await response.json();
     return results;
   } catch (error) {
