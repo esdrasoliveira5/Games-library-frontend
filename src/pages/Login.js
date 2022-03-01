@@ -6,7 +6,7 @@ import FormsLogin from '../components/FormsLogin';
 import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
 import Battlefield from '../img/Battlefield.png';
-import { getUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 import Logo from '../img/Logo3.png';
 
 const BigContainer = styled.div`
@@ -58,7 +58,7 @@ function Login() {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
-        const response = await getUser(token);
+        const response = await GameLibrary.getUser(token);
         if (!response.error) {
           setLogged(true);
           navigate('/home');

@@ -1,6 +1,6 @@
 const URL_FETCH = 'http://localhost:3001/';
 const APLICATION = 'application/json';
-export async function createUser({
+async function createUser({
   name, lastName, email, password, avatar,
 }) {
   try {
@@ -25,7 +25,7 @@ export async function createUser({
   }
 }
 
-export async function loginUser({ email, password }) {
+async function loginUser({ email, password }) {
   try {
     const response = await fetch(`${URL_FETCH}user/login`, {
       method: 'POST',
@@ -45,7 +45,7 @@ export async function loginUser({ email, password }) {
   }
 }
 
-export async function getUser(token) {
+async function getUser(token) {
   try {
     const response = await fetch(`${URL_FETCH}user`, {
       method: 'GET',
@@ -59,6 +59,31 @@ export async function getUser(token) {
     return results;
   } catch (error) {
     console.log(error);
-    return { message: error };
+    return { error };
   }
 }
+
+async function getCollection(token, id) {
+  try {
+    const response = await fetch(`${URL_FETCH}collections/${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
+export default {
+  createUser,
+  loginUser,
+  getUser,
+  getCollection,
+};

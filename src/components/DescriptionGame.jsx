@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ButtonSaveGame from './ButtonSaveGame';
 import GaleryComponent from './GaleryComponent';
 
 const DescriptionContainer = styled.div`
@@ -104,6 +105,7 @@ function DescriptionGame({ game, screenshoots }) {
             {isReadMore ? '...read more' : ' show less'}
           </button>
         </Text>
+        <ButtonSaveGame />
         <Fields>
           {'Metacritic:  '}
           <MetaScore>

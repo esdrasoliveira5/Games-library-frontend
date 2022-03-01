@@ -6,7 +6,7 @@ import FormRegister from '../components/FormRegister';
 import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
 import Mario from '../img/Mario.png';
-import { getUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 
 const BigContainer = styled.div`
   display: flex;
@@ -62,7 +62,7 @@ function Register() {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
-        const response = await getUser(token);
+        const response = await GameLibrary.getUser(token);
         if (!response.error) {
           setLogged(true);
           navigate('/home');

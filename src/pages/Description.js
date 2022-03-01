@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
 import Halo from '../img/Halo.png';
 import Rawg from '../services/fetchRawg';
-import { getUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 
 const BigContainer = styled.div`
   display: flex;
@@ -57,19 +57,24 @@ function Description() {
   const path = Number(location.pathname.split('/')[2]);
   const [game, setGame] = useState({});
   const [screenshoots, setScreenshoots] = useState([]);
+  const [collection, setCollection] = useState(0);
   const { logged, setLogged } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
-        const response = await getUser(token);
+        const response = await GameLibrary.getUser(token);
+        const { categoriesId } = await GameLibrary.getCollection(token, path);
         const gameResponse = await Rawg.fetchGameId(path, '');
         const screenshootsResponse = await Rawg.fetchGameId(path, '/screenshots');
         if (!response.error) {
           if (!game.id) {
             setGame(gameResponse);
             setScreenshoots(screenshootsResponse.results);
+            if (categoriesId !== undefined) {
+              setCollection(categoriesId);
+            }
           }
           setLogged(true);
         } else {
@@ -91,7 +96,7 @@ function Description() {
           <MainContainer>
             <Container>
               <Image src={Halo} alt="Master Chief" />
-              <DescriptionGame game={game} screenshoots={screenshoots} />
+              <DescriptionGame game={game} screenshoots={screenshoots} collection={collection} />
             </Container>
           </MainContainer>
         ) : ''

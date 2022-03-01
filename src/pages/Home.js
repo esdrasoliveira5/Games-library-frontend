@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
-import { getUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 import Rawg from '../services/fetchRawg';
 import HomeGamesPage from '../components/HomeGamesPage';
 import Tifa from '../img/Tifa.png';
@@ -62,8 +62,9 @@ function Home() {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
-        const response = await getUser(token);
+        const response = await GameLibrary.getUser(token);
         const gamesResponse = await Rawg.fetchGamesPages(1);
+        console.log(response);
         if (!response.error) {
           if (games.length === 0) {
             setGames(gamesResponse.results);

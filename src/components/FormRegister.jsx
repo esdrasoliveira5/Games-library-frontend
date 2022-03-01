@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import registerValues from '../helpers/registerValues';
-import { createUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 import Avatar from './Avatar';
 
 const FormRegisters = styled.form`
@@ -68,7 +68,7 @@ function FormRegister() {
   async function sendInfo() {
     const validation = registerValues(registerInfo);
     if (validation === 'Criando Usuario') {
-      const result = await createUser(registerInfo);
+      const result = await GameLibrary.createUser(registerInfo);
       if (result.token) {
         global.alert('Usuario Criado');
         navigate('/');

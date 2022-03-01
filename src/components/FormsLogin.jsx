@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import loginValidate from '../helpers/loginValidate';
-import { loginUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 
 const FormLogin = styled.form`
   display: flex;
@@ -59,7 +59,7 @@ function FormsLogin() {
   async function sendLogin() {
     const validation = loginValidate(loginValues);
     if (validation === 'Logando Usuario') {
-      const result = await loginUser(loginValues);
+      const result = await GameLibrary.loginUser(loginValues);
       if (result.token) {
         localStorage.setItem('game-library', JSON.stringify({ token: result.token }));
         global.alert('Bem Vindo!');

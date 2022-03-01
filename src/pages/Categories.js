@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import gamesContext from '../context/AppContext';
-import { getUser } from '../services/gameLibraryApi';
+import GameLibrary from '../services/fetchGameLibrary';
 import Rawg from '../services/fetchRawg';
 import BlackFlag from '../img/BlackFlag.png';
 import CategoriesPage from '../components/Categories';
@@ -60,7 +60,7 @@ function Categories() {
       const localResponse = JSON.parse(localStorage.getItem('game-library'));
       if (localResponse !== null) {
         const { token } = localResponse;
-        const response = await getUser(token);
+        const response = await GameLibrary.getUser(token);
         const genresResponse = await Rawg.fetchGamesgenres();
         if (!response.error) {
           setgenres(genresResponse.results);
