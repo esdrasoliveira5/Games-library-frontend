@@ -73,7 +73,7 @@ const Fields = styled.div`
   }
 `;
 
-function DescriptionGame({ game, screenshoots }) {
+function DescriptionGame({ game, screenshoots, collection }) {
   const {
     name,
     description,
@@ -105,7 +105,7 @@ function DescriptionGame({ game, screenshoots }) {
             {isReadMore ? '...read more' : ' show less'}
           </button>
         </Text>
-        <ButtonSaveGame />
+        <ButtonSaveGame collection={collection} />
         <Fields>
           {'Metacritic:  '}
           <MetaScore>
@@ -136,6 +136,7 @@ DescriptionGame.propTypes = {
     released: PropTypes.string.isRequired,
   }).isRequired,
   screenshoots: PropTypes.arrayOf(PropTypes.objectOf({})).isRequired,
+  collection: PropTypes.string.isRequired,
 };
 
 export default DescriptionGame;

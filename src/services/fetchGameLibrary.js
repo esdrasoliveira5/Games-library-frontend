@@ -81,9 +81,28 @@ async function getCollection(token, id) {
   }
 }
 
+async function getCategories(token) {
+  try {
+    const response = await fetch(`${URL_FETCH}categories`, {
+      method: 'GET',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
 export default {
   createUser,
   loginUser,
   getUser,
   getCollection,
+  getCategories,
 };

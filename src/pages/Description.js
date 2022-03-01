@@ -57,7 +57,10 @@ function Description() {
   const path = Number(location.pathname.split('/')[2]);
   const [game, setGame] = useState({});
   const [screenshoots, setScreenshoots] = useState([]);
-  const [collection, setCollection] = useState(0);
+  const [collection, setCollection] = useState({
+    categorie: 0,
+    categoriesAll: [],
+  });
   const { logged, setLogged } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
@@ -66,6 +69,7 @@ function Description() {
         const { token } = localResponse;
         const response = await GameLibrary.getUser(token);
         const { categoriesId } = await GameLibrary.getCollection(token, path);
+        const categories = await GameLibrary.getCategories(token);
         const gameResponse = await Rawg.fetchGameId(path, '');
         const screenshootsResponse = await Rawg.fetchGameId(path, '/screenshots');
         if (!response.error) {
@@ -73,7 +77,7 @@ function Description() {
             setGame(gameResponse);
             setScreenshoots(screenshootsResponse.results);
             if (categoriesId !== undefined) {
-              setCollection(categoriesId);
+              setCollection({ categoriesId, categories });
             }
           }
           setLogged(true);
