@@ -68,8 +68,8 @@ function CategorieCard({
     navigate('/home');
   }
   return (
-    <CardStyled>
-      <div key={id} style={{ backgroundImage: `url(${background})` }}>
+    <CardStyled key={id}>
+      <div style={{ backgroundImage: `url(${background})` }}>
         <button
           type="button"
           onClick={handleCategories}

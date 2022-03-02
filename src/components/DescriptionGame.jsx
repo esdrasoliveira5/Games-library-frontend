@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ButtonSaveGame from './ButtonSaveGame';
+import Collection from './Collection';
 import GaleryComponent from './GaleryComponent';
 
 const DescriptionContainer = styled.div`
@@ -73,7 +73,7 @@ const Fields = styled.div`
   }
 `;
 
-function DescriptionGame({ game, screenshoots, collection }) {
+function DescriptionGame({ game, screenshoots }) {
   const {
     name,
     description,
@@ -105,7 +105,7 @@ function DescriptionGame({ game, screenshoots, collection }) {
             {isReadMore ? '...read more' : ' show less'}
           </button>
         </Text>
-        <ButtonSaveGame collection={collection} />
+        <Collection />
         <Fields>
           {'Metacritic:  '}
           <MetaScore>
@@ -117,26 +117,26 @@ function DescriptionGame({ game, screenshoots, collection }) {
           {'Avaliação: '}
           <p style={{ color: 'yellow', border: '1px solid', borderRadius: '5px' }}>{rating}</p>
         </Fields>
-        <Fields>{platforms.map(({ platform }) => <p>{platform.name}</p>)}</Fields>
-        <Fields>{genres.map((genre) => <p>{genre.name}</p>)}</Fields>
+        <Fields>{platforms.map(({ platform }) => <p key={platform.id}>{platform.name}</p>)}</Fields>
+        <Fields>{genres.map((genre) => <p key={genre.id}>{genre.name}</p>)}</Fields>
       </DescriptionsText>
     </DescriptionContainer>
   );
 }
 
 DescriptionGame.propTypes = {
-  game: PropTypes.objectOf({
+  game: PropTypes.shape({
     background_image: PropTypes.string.isRequired,
+    background_image_additional: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    genres: PropTypes.string.isRequired,
-    metacritic: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    metacritic: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    parent_platforms: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
+    parent_platforms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    rating: PropTypes.number.isRequired,
     released: PropTypes.string.isRequired,
   }).isRequired,
-  screenshoots: PropTypes.arrayOf(PropTypes.objectOf({})).isRequired,
-  collection: PropTypes.string.isRequired,
+  screenshoots: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default DescriptionGame;

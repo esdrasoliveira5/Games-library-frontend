@@ -84,12 +84,14 @@ function GaleryComponent({ images, background: { img, extra } }) {
       </BigPicture>
       <Galery>
         {images.map(({ image }, index) => (
-          <Image>
-            <input type="checkbox" name="" id={`btnControl${index}`} />
-            <label htmlFor={`btnControl${index}`}>
-              <img src={image} alt="screenshoots" />
-            </label>
-          </Image>
+          <div key={image}>
+            <Image>
+              <input type="checkbox" name="" id={`btnControl${index}`} />
+              <label htmlFor={`btnControl${index}`}>
+                <img src={image} alt="screenshoots" />
+              </label>
+            </Image>
+          </div>
         ))}
       </Galery>
     </DescriptionsImages>
@@ -97,8 +99,8 @@ function GaleryComponent({ images, background: { img, extra } }) {
 }
 
 GaleryComponent.propTypes = {
-  images: PropTypes.shape(PropTypes.array.isRequired).isRequired,
-  background: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  images: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  background: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default GaleryComponent;

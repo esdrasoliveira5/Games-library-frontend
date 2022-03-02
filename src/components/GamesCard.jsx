@@ -55,8 +55,8 @@ function GamesCard({
   id, name, background,
 }) {
   return (
-    <CardStyled>
-      <div key={id} style={{ backgroundImage: `url(${background === null ? Logo : background})` }}>
+    <CardStyled key={id}>
+      <div style={{ backgroundImage: `url(${background === null ? Logo : background})` }}>
         <Link to={`/game/${id}`}>
           <p>{name}</p>
         </Link>

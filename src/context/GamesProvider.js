@@ -4,6 +4,8 @@ import gamesContext from './AppContext';
 
 function GamesProvider({ children }) {
   const [logged, setLogged] = useState(true);
+  const [games, setGames] = useState([]);
+  const [genres, setgenres] = useState([]);
   const [searchContext, setSearchContext] = useState({
     searchBar: false,
     searchGenres: false,
@@ -12,8 +14,11 @@ function GamesProvider({ children }) {
     genre: '',
     page: 1,
   });
-  const [games, setGames] = useState([]);
-  const [genres, setgenres] = useState([]);
+  const [collection, setCollection] = useState({
+    categoriesId: 0,
+    categories: [],
+    game: {},
+  });
   const contextValue = useMemo(() => ({
     logged,
     setLogged,
@@ -23,7 +28,9 @@ function GamesProvider({ children }) {
     setGames,
     genres,
     setgenres,
-  }), [logged, searchContext, games, genres]);
+    collection,
+    setCollection,
+  }), [logged, searchContext, games, genres, collection]);
 
   return (
     <gamesContext.Provider value={contextValue}>
@@ -34,7 +41,7 @@ function GamesProvider({ children }) {
 
 GamesProvider.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.arrayOf(PropTypes.any).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default GamesProvider;

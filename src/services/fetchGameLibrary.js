@@ -99,10 +99,75 @@ async function getCategories(token) {
   }
 }
 
+async function saveGameToCollection(token, { id, name, image }) {
+  try {
+    const response = await fetch(`${URL_FETCH}collections`, {
+      method: 'POST',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        id,
+        name,
+        image,
+      }),
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    return { error };
+  }
+}
+async function categoryUpdate(token, { gamesId, categoriesId }) {
+  try {
+    const response = await fetch(`${URL_FETCH}collections/update`, {
+      method: 'PUT',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        gamesId,
+        categoriesId,
+      }),
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    return { error };
+  }
+}
+
+async function removeFromCollection(token, { gamesId }) {
+  try {
+    const response = await fetch(`${URL_FETCH}collections/delete`, {
+      method: 'DELETE',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        gamesId,
+      }),
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    return { error };
+  }
+}
+
 export default {
   createUser,
   loginUser,
   getUser,
   getCollection,
   getCategories,
+  saveGameToCollection,
+  categoryUpdate,
+  removeFromCollection,
 };

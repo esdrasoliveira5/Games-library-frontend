@@ -64,7 +64,6 @@ function Home() {
         const { token } = localResponse;
         const response = await GameLibrary.getUser(token);
         const gamesResponse = await Rawg.fetchGamesPages(1);
-        console.log(response);
         if (!response.error) {
           if (games.length === 0) {
             setGames(gamesResponse.results);

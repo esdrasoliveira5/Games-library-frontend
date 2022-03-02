@@ -57,10 +57,7 @@ function Description() {
   const path = Number(location.pathname.split('/')[2]);
   const [game, setGame] = useState({});
   const [screenshoots, setScreenshoots] = useState([]);
-  const [collection, setCollection] = useState({
-    categorie: 0,
-    categoriesAll: [],
-  });
+  const { setCollection } = useContext(gamesContext);
   const { logged, setLogged } = useContext(gamesContext);
   useEffect(() => {
     const userLogged = async () => {
@@ -76,9 +73,11 @@ function Description() {
           if (!game.id) {
             setGame(gameResponse);
             setScreenshoots(screenshootsResponse.results);
-            if (categoriesId !== undefined) {
-              setCollection({ categoriesId, categories });
-            }
+            setCollection({
+              categoriesId: categoriesId !== undefined ? categoriesId : 0,
+              categories: categories !== undefined ? categories : [],
+              game: gameResponse,
+            });
           }
           setLogged(true);
         } else {
@@ -100,7 +99,7 @@ function Description() {
           <MainContainer>
             <Container>
               <Image src={Halo} alt="Master Chief" />
-              <DescriptionGame game={game} screenshoots={screenshoots} collection={collection} />
+              <DescriptionGame game={game} screenshoots={screenshoots} />
             </Container>
           </MainContainer>
         ) : ''
