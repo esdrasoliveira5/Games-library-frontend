@@ -143,7 +143,7 @@ function Avatar({ avatar: { registerInfo, setRegisterInfo } }) {
 }
 
 Avatar.propTypes = {
-  avatar: PropTypes.objectOf({
+  avatar: PropTypes.shape({
     registerInfo: PropTypes.objectOf(PropTypes.string).isRequired,
     setRegisterInfo: PropTypes.func.isRequired,
   }).isRequired,

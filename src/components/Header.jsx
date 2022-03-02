@@ -13,7 +13,7 @@ const HeaderS = styled.header`
   top: 0;
   width: 100%;
   z-index: 10;
-  background-color: #161A1D;
+  background-color: rgb(22, 26, 29, 0.8);
   color: #F5F3F4;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   img {
@@ -23,13 +23,15 @@ const HeaderS = styled.header`
 
 const NavS = styled.nav`
   a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
     margin: 10px;
     text-decoration: none;
     text-transform: uppercase;
     outline: 0;
     background: #E5383B;
-    width: 80px;
-    height: 50px;
     border: 0;
     border-radius: 5px;
     padding: 10px;
@@ -42,25 +44,48 @@ const NavS = styled.nav`
   a:hover {
     background-color: #660708;
   }
-  button {
-    margin: 10px;
-    text-decoration: none;
-    text-transform: uppercase;
-    outline: 0;
-    background: #E5383B;
-    width: 80px;
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
+
+`;
+
+const Profile = styled.div`
+  background: #E5383B;
+  padding: 2px;
+  border-radius: 5px;
+  width: 130px;
+  a {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    margin: 2px;
+    img {
+    width: 40px;
+    margin: 2px;
+    }
+    div{
+      margin-left: 10px;
+      button {
+        text-decoration: none;
+        text-transform: uppercase;
+        outline: 0;
+        background: #575251;
+        border: 0;
+        border-radius: 5px;
+        padding: 5px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0B090A;
+        cursor: pointer;
+      }
+    }
   }
-  button:hover {
-    background-color: #660708;
+  :hover {
+    background: #660708;
+    cursor: pointer;
   }
 `;
 
@@ -78,7 +103,7 @@ function Header() {
         <img src={Logo} alt="logo" />
       </Link>
       {
-        !logged
+        !logged.logged
           ? (
             <NavS>
               <Link to="/">
@@ -87,17 +112,20 @@ function Header() {
             </NavS>
           )
           : (
-            <NavS>
-              <Link to="profile">
-                Perfil
+            <Profile>
+              <Link to="/profile">
+                <img src={logged.avatar} alt="avatar" />
+                <div>
+                  <p>{logged.name}</p>
+                  <button
+                    type="button"
+                    onClick={handleSignOff}
+                  >
+                    Sair
+                  </button>
+                </div>
               </Link>
-              <button
-                type="button"
-                onClick={handleSignOff}
-              >
-                Logout
-              </button>
-            </NavS>
+            </Profile>
           )
       }
     </HeaderS>

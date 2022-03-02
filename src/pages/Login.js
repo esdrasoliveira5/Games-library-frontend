@@ -60,22 +60,25 @@ function Login() {
         const { token } = localResponse;
         const response = await GameLibrary.getUser(token);
         if (!response.error) {
-          setLogged(true);
+          setLogged({
+            ...response,
+            logged: true,
+          });
           navigate('/home');
         } else {
-          setLogged(false);
+          setLogged({ logged: false });
         }
       } else {
-        setLogged(false);
+        setLogged({ logged: false });
       }
     };
     userLogged();
-  }, [logged]);
+  }, []);
   return (
     <BigContainer>
       <Header />
       {
-        !logged ? (
+        !logged.logged ? (
           <MainContainer>
             <img src={Battlefield} alt="" height="800px" />
             <Container>

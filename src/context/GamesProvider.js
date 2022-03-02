@@ -3,8 +3,18 @@ import React, { useState, useMemo } from 'react';
 import gamesContext from './AppContext';
 
 function GamesProvider({ children }) {
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState({
+    logged: false,
+    name: '',
+    lastName: '',
+    email: '',
+    avatar: '',
+  });
   const [games, setGames] = useState([]);
+  const [userGames, setUserGames] = useState({
+    games: [],
+    categoryId: '',
+  });
   const [genres, setgenres] = useState([]);
   const [searchContext, setSearchContext] = useState({
     searchBar: false,
@@ -30,7 +40,9 @@ function GamesProvider({ children }) {
     setgenres,
     collection,
     setCollection,
-  }), [logged, searchContext, games, genres, collection]);
+    userGames,
+    setUserGames,
+  }), [logged, searchContext, games, genres, collection, userGames]);
 
   return (
     <gamesContext.Provider value={contextValue}>

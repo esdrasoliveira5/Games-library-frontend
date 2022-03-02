@@ -18,7 +18,7 @@ const FooterS = styled.footer`
 function Footer() {
   return (
     <FooterS>
-      <p>© Gamer Library by Esdras Oliveira</p>
+      <p>© Game Library by Esdras Oliveira</p>
       <div>
         <a
           href="https://linkedin.com/in/esdrasmoliveira"

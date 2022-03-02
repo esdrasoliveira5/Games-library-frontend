@@ -161,6 +161,24 @@ async function removeFromCollection(token, { gamesId }) {
   }
 }
 
+async function getUserGames(token, id) {
+  try {
+    const response = await fetch(`${URL_FETCH}collections/user/${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
 export default {
   createUser,
   loginUser,
@@ -170,4 +188,5 @@ export default {
   saveGameToCollection,
   categoryUpdate,
   removeFromCollection,
+  getUserGames,
 };

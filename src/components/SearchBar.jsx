@@ -11,7 +11,7 @@ const SearchBarForm = styled.form`
   @media screen and (max-width: 700px) {
     width: 100%;
   }
-  margin-top: 80px;
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;

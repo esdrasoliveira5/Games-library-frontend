@@ -68,13 +68,16 @@ function Home() {
           if (games.length === 0) {
             setGames(gamesResponse.results);
           }
-          setLogged(true);
+          setLogged({
+            ...response,
+            logged: true,
+          });
         } else {
-          setLogged(false);
+          setLogged({ logged: false });
           navigate('/');
         }
       } else {
-        setLogged(false);
+        setLogged({ logged: false });
         navigate('/');
       }
     };
@@ -103,7 +106,7 @@ function Home() {
     <BigContainer>
       <Header />
       {
-        logged ? (
+        logged.logged ? (
           <MainContainer>
             <SearchBar />
             <Container>

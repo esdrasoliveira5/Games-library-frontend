@@ -79,13 +79,17 @@ function Description() {
               game: gameResponse,
             });
           }
-          setLogged(true);
+          setLogged({
+            ...response,
+            logged: true,
+          });
         } else {
-          setLogged(false);
+          setLogged({ logged: false });
+
           navigate('/');
         }
       } else {
-        setLogged(false);
+        setLogged({ logged: false });
         navigate('/');
       }
     };
@@ -95,7 +99,7 @@ function Description() {
     <BigContainer>
       <Header />
       {
-        logged && game.id !== undefined ? (
+        logged.logged && game.id !== undefined ? (
           <MainContainer>
             <Container>
               <Image src={Halo} alt="Master Chief" />

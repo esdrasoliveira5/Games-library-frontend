@@ -52,11 +52,13 @@ const CardStyled = styled.div`
 `;
 
 function GamesCard({
-  id, name, background,
+  id, name, background, image,
 }) {
+  const backImage = image || background;
+  console.log(backImage);
   return (
     <CardStyled key={id}>
-      <div style={{ backgroundImage: `url(${background === null ? Logo : background})` }}>
+      <div style={{ backgroundImage: `url(${backImage === null ? Logo : backImage})` }}>
         <Link to={`/game/${id}`}>
           <p>{name}</p>
         </Link>
@@ -69,6 +71,7 @@ GamesCard.propTypes = {
   background: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default GamesCard;
