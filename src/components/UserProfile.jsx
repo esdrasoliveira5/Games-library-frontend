@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
 import ArrowPagesProfile from './ArrowPagesProfile';
 import GamesCard from './GamesCard';
-import Square from '../img/square.png';
+// import Square from '../img/square.png';
+import Menu from '../img/Menu.png';
+import Close from '../img/Close.png';
 
 const Profile = styled.div`
   color: #F5F3F4;
@@ -21,7 +23,7 @@ const Profile = styled.div`
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   backdrop-filter: blur(8px);
-  input {
+  input[type=checkbox] {
     z-index: 11;
     display: none;
   }
@@ -34,11 +36,12 @@ const Profile = styled.div`
       position: absolute;
       z-index: 12;
       display: unset;
+      height: 200px;
     }
-    input:not(:checked)+ div{
+    input[type=checkbox]:not(:checked)+ div{
       display: none;
     }
-    input:checked + div{
+    input[type=checkbox]:checked + div{
       display: flex;
       position: absolute;
       background-color: rgba(31, 30, 30, 0.651);
@@ -140,6 +143,7 @@ const GamesBox = styled.div`
 `;
 
 function UserProfile({ categories }) {
+  const [menu, setMenu] = useState(true);
   const { logged, userGames, setUserGames } = useContext(gamesContext);
 
   function handleCategories({ target }) {
@@ -150,12 +154,16 @@ function UserProfile({ categories }) {
     });
   }
 
+  function handlemenu() {
+    setMenu(!menu);
+  }
+
   return (
     <Profile>
       <label for="side">
-        <img src={Square} alt="menu" width="40px" />
+        <img src={menu ? Menu : Close} alt="menu" width="40px" />
       </label>
-      <input type="checkbox" id="side" />
+      <input type="checkbox" id="side" onClick={handlemenu} />
       <Sidebar>
         <ProfileInfo>
           <img src={logged.avatar} alt="avatar" />
