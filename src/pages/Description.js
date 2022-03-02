@@ -45,10 +45,10 @@ const Container = styled.main`
 
 const Image = styled.img`
     padding-top: 10%;
-    height: 110%;
+    height: 130%;
     position: absolute;
     z-index: 0;
-    left: 25%;
+    right: 25%;
 `;
 
 function Description() {

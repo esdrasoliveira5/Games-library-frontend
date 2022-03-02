@@ -62,7 +62,7 @@ const Image = styled.div`
     right: 0%;
     bottom: 0%;
     top: 0%;
-    z-index: 0;
+    z-index: 1;
     @media screen and (max-width: 1000px) {
       left: -13%;
       width: 255%;
