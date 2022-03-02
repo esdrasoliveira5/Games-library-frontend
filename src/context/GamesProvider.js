@@ -14,6 +14,7 @@ function GamesProvider({ children }) {
   const [userGames, setUserGames] = useState({
     games: [],
     categoryId: '',
+    page: 0,
   });
   const [genres, setgenres] = useState([]);
   const [searchContext, setSearchContext] = useState({

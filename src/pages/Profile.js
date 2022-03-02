@@ -62,12 +62,14 @@ function Profile() {
         const { token } = localResponse;
         const response = await GameLibrary.getUser(token);
         const categoriesResp = await GameLibrary.getCategories(token);
-        const gamesResponse = await GameLibrary.getUserGames(token, userGames.categoryId);
+        const gamesResponse = await GameLibrary.getUserGames(token, 0, '');
         if (!response.error) {
-          setUserGames({
-            ...userGames,
-            games: gamesResponse,
-          });
+          if (userGames.games.length === 0) {
+            setUserGames({
+              ...userGames,
+              games: gamesResponse,
+            });
+          }
           setLogged({
             ...response,
             logged: true,
@@ -84,6 +86,24 @@ function Profile() {
     };
     userLogged();
   }, []);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      console.log('Mudou');
+      const localResponse = JSON.parse(localStorage.getItem('game-library'));
+      const { token } = localResponse;
+      const gamesResponse = await GameLibrary.getUserGames(
+        token,
+        userGames.page,
+        userGames.categoryId,
+      );
+      setUserGames({
+        ...userGames,
+        games: gamesResponse,
+      });
+    };
+    fetchCategory();
+  }, [userGames.categoryId, userGames.page]);
   return (
     <BigContainer>
       <Header />

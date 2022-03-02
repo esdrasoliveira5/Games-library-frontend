@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import gamesContext from '../context/AppContext';
+import ArrowPagesProfile from './ArrowPagesProfile';
 import GamesCard from './GamesCard';
 
 const Profile = styled.div`
@@ -27,6 +28,16 @@ const Sidebar = styled.div`
   width: 25%;
   max-width: 200px;
   border-radius: 10px;
+  button {
+    align-self: baseline;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
 `;
 
 const ProfileInfo = styled.div`
@@ -73,7 +84,16 @@ const GamesBox = styled.div`
 `;
 
 function UserProfile({ categories }) {
-  const { logged, userGames } = useContext(gamesContext);
+  const { logged, userGames, setUserGames } = useContext(gamesContext);
+
+  function handleCategories({ target }) {
+    setUserGames({
+      ...userGames,
+      categoryId: target.value,
+      page: 0,
+    });
+  }
+
   return (
     <Profile>
       <Sidebar>
@@ -82,15 +102,18 @@ function UserProfile({ categories }) {
           <h1>{logged.name}</h1>
           <h3>{logged.lastName}</h3>
           <h4>{logged.email}</h4>
-          <p>editar</p>
+          <button type="button">Editar</button>
         </ProfileInfo>
         <NavCategories>
+          <h2>Categorias</h2>
+          <button value="" onClick={(event) => handleCategories(event)} type="button" key="0">Todos os Games</button>
           {
-            categories.map(({ name, id }) => <h3 key={id}>{name}</h3>)
+            categories.map(({ name, id }) => <button value={id} onClick={(event) => handleCategories(event)} type="button" key={id}>{name}</button>)
           }
         </NavCategories>
       </Sidebar>
       <Content>
+        <ArrowPagesProfile />
         <GamesBox>
           {userGames.games.map(({ games }) => GamesCard(games))}
         </GamesBox>

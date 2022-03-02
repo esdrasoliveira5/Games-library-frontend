@@ -161,9 +161,9 @@ async function removeFromCollection(token, { gamesId }) {
   }
 }
 
-async function getUserGames(token, id) {
+async function getUserGames(token, page, id) {
   try {
-    const response = await fetch(`${URL_FETCH}collections/user/${id}`, {
+    const response = await fetch(`${URL_FETCH}collections/user/${page}/${id}`, {
       method: 'GET',
       headers: {
         Accept: APLICATION,

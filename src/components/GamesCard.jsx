@@ -55,7 +55,6 @@ function GamesCard({
   id, name, background, image,
 }) {
   const backImage = image || background;
-  console.log(backImage);
   return (
     <CardStyled key={id}>
       <div style={{ backgroundImage: `url(${backImage === null ? Logo : backImage})` }}>

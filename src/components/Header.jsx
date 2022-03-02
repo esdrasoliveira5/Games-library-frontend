@@ -5,6 +5,7 @@ import gamesContext from '../context/AppContext';
 import Logo from '../img/Logo2.png';
 
 const HeaderS = styled.header`
+  font-size: 15px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -64,7 +65,6 @@ const Profile = styled.div`
     div{
       margin-left: 10px;
       button {
-        text-decoration: none;
         text-transform: uppercase;
         outline: 0;
         background: #575251;
@@ -72,7 +72,7 @@ const Profile = styled.div`
         border-radius: 5px;
         padding: 5px;
         color: #FFFFFF;
-        font-size: 14px;
+        font-size: 10px;
         -webkit-transition: all 0.3 ease;
         transition: all 0.3 ease;
         cursor: pointer;
