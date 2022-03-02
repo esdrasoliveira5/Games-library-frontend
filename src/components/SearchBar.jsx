@@ -49,7 +49,6 @@ const SelectSearch = styled.label`
     background: #fff;
     box-shadow: 0 1px 3px -2px #9098a9;
     cursor: pointer;
-    font-family: inherit;
     font-size: 16px;
     transition: all 150ms ease;
     option {

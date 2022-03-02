@@ -26,7 +26,6 @@ const CardStyled = styled.div`
     width: 100%;
     height: 100%;
     transition: all .5s ease-in-out;
-    cursor: pointer;
     border-radius: 10px;
     button {
         display: flex;
@@ -36,14 +35,15 @@ const CardStyled = styled.div`
         width: 100%;
         height: 100%;
         opacity: 0;
-        font-size: 10px;
+        font-size: 20px;
         transition: all .5s ease-in-out;
         text-decoration: none;
-        color: #0B090A;
+        color: #161A1D;
       }
       button:hover {
         opacity: 100;
         background-color: rgb(237, 242, 244,0.4);
+        cursor: pointer;
       }
   }
   div:hover {

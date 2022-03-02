@@ -47,7 +47,6 @@ const Text = styled.p`
   width: 100%;
   button {
     color: #F5F3F4;
-    font-family: 'Montserrat', sans-serif;
     background:none;
     border:none;
     margin:0;

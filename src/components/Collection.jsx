@@ -23,7 +23,7 @@ const Select = styled.div`
   border-bottom: 1px solid #999;
   position: absolute;
   pointer-events: none;
-  color: black;
+  color: #161A1D;
 }
 
 .selectdiv select {
@@ -90,7 +90,7 @@ const Button = styled.div`
     font-size: 16px;
     line-height: 1.75;
     color: white;
-    background: rgba(15, 209, 31, 0.2);
+    background: rgba(0, 248, 21, 0.3);
     backdrop-filter: blur(8px);
     background-image: none;
     border: 1px solid #cccccc;
@@ -98,7 +98,7 @@ const Button = styled.div`
     word-break: normal;
   }
   button:hover {
-    background: rgba(10, 117, 18, 0.2);
+    background: rgba(15, 143, 26, 0.3);
     backdrop-filter: blur(8px);
     cursor: pointer;
   }

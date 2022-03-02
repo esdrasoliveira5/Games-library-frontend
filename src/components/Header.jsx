@@ -28,7 +28,8 @@ const NavS = styled.nav`
     text-transform: uppercase;
     outline: 0;
     background: #E5383B;
-    width: 100%;
+    width: 80px;
+    height: 50px;
     border: 0;
     border-radius: 5px;
     padding: 10px;
@@ -41,10 +42,36 @@ const NavS = styled.nav`
   a:hover {
     background-color: #660708;
   }
+  button {
+    margin: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    outline: 0;
+    background: #E5383B;
+    width: 80px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #660708;
+  }
 `;
 
 function Header() {
-  const { logged } = useContext(gamesContext);
+  const { logged, setLogged } = useContext(gamesContext);
+
+  function handleSignOff() {
+    localStorage.removeItem('game-library');
+    setLogged(false);
+    window.location.reload();
+  }
   return (
     <HeaderS>
       <Link to="/home">
@@ -64,9 +91,12 @@ function Header() {
               <Link to="profile">
                 Perfil
               </Link>
-              <Link to="logout">
+              <button
+                type="button"
+                onClick={handleSignOff}
+              >
                 Logout
-              </Link>
+              </button>
             </NavS>
           )
       }
