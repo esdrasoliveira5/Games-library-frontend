@@ -27,15 +27,15 @@ const FormRegisters = styled.form`
     color: #161A1D;
   }
 `;
-const ButtonRed = styled.div`
+const ButtonGreen = styled.div`
   outline: 0;
-  background: #E5383B;
+  background: #2dc653;
   border: 0;
   border-radius: 5px;
   button {
     text-transform: uppercase;
     outline: 0;
-    background: #E5383B;
+    background: #2dc653;
     width: 100%;
     border: 0;
     border-radius: 5px;
@@ -47,7 +47,7 @@ const ButtonRed = styled.div`
     cursor: pointer;
   }
   button:hover {
-    background-color: #660708;
+    background-color: #207034;
   }
 `;
 
@@ -136,14 +136,14 @@ function FormRegister() {
           onChange={(event) => handleInfo(event)}
         />
       </label>
-      <ButtonRed>
+      <ButtonGreen>
         <button
           type="button"
           onClick={sendInfo}
         >
           Salvar
         </button>
-      </ButtonRed>
+      </ButtonGreen>
     </FormRegisters>
   );
 }
