@@ -1,6 +1,6 @@
 # game-library
 
-<h1 align="center">Bem-vindo ao Agiliza Prof Core👋</h1>
+<h1 align="center">Bem-vindo Game library👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />  
 </p>
