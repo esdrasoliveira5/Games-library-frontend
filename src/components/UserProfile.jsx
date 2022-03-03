@@ -143,6 +143,7 @@ const GamesBox = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    min-height: 600px;
 `;
 
 function UserProfile({ categories }) {
