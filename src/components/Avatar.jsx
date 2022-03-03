@@ -86,7 +86,14 @@ const AvatarBox = styled.div`
     width: 135px;
     padding: 2px;
     border-radius: 10px;
+    transition: all .5s ease-in-out;
   }
+  img:hover {
+        opacity: 100;
+        background-color: #F5F3F4;
+        cursor: pointer;
+        transform: scale(1.2);
+      }
 `;
 
 function Avatar({ avatar: { registerInfo, setRegisterInfo } }) {

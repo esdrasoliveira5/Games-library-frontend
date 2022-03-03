@@ -101,7 +101,7 @@ function DescriptionGame({ game, screenshoots }) {
         <Text>
           {isReadMore ? strippedString.slice(0, 150) : strippedString}
           <button type="button" onClick={toggleReadMore}>
-            {isReadMore ? '...read more' : ' show less'}
+            {isReadMore ? '...leia mais' : ' mostrar menos'}
           </button>
         </Text>
         <Collection />

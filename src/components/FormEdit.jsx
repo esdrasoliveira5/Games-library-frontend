@@ -23,6 +23,10 @@ const FormRegisters = styled.form`
   input:focus {
     background: #dbdbdb;
   }
+  p{
+    font-size: 12px;
+    color: #161A1D;
+  }
 `;
 const ButtonGreen = styled.div`
   outline: 0;
@@ -128,6 +132,7 @@ function FormEdit() {
   } = registerInfo;
   return (
     <FormRegisters>
+      <p>Clique na imagem para alterar o avatar.</p>
       <Avatar avatar={{ registerInfo, setRegisterInfo }} />
       <label htmlFor="name">
         <input
