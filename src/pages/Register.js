@@ -15,6 +15,7 @@ const BigContainer = styled.div`
   align-items: center;
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
   background: linear-gradient(90deg, #E5383B 0%, #660708 100%);
 `;
 

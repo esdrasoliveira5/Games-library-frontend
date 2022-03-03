@@ -16,6 +16,7 @@ const BigContainer = styled.div`
   align-items: center;
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
   background: linear-gradient(90deg, #0B090A 0%, #660708 100%);
 `;
 const Container = styled.main`
@@ -37,6 +38,7 @@ const Container = styled.main`
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
+  overflow: hidden;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   img {
     width: 100%;

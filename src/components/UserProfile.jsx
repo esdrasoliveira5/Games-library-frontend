@@ -46,7 +46,7 @@ const Profile = styled.div`
       position: absolute;
       background-color: rgba(31, 30, 30, 0.651);
       min-width: 100%;
-      min-height: 100%;
+      min-height: 200px;
       left: 0%;
       right: 0%;
       top: 0%;
