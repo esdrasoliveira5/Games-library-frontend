@@ -20,14 +20,6 @@ const BigContainer = styled.div`
   background: linear-gradient(90deg, #0B090A 0%, #660708 100%);
 `;
 const Container = styled.main`
-  @media screen and (max-width: 350px) {
-    position: absolute;
-    width: 100%;
-  }
-  @media screen and (max-width: 1100px) {
-    position: absolute;
-    width: 70%;
-  }
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.2);
@@ -42,6 +34,16 @@ const Container = styled.main`
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   img {
     width: 100%;
+  }
+  @media screen and (max-width: 1100px) {
+    position: absolute;
+    width: 80%;
+  }
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    width: 100%;
+    margin-top: 100px;
+    max-width: 500px;
   }
 `;
 const MainContainer = styled.div`

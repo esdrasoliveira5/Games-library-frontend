@@ -20,14 +20,6 @@ const BigContainer = styled.div`
 `;
 
 const MainContainer = styled.main`
-  @media screen and (max-width: 1100px) {
-    position: absolute;
-    width: 70%;
-  }
-  @media screen and (max-width: 350px) {
-    position: absolute;
-    width: 100%;
-  }
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -44,6 +36,14 @@ const MainContainer = styled.main`
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
+  }
+  @media screen and (max-width: 1100px) {
+    position: absolute;
+    width: 80%;
+  }
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    width: 100%;
   }
 `;
 
