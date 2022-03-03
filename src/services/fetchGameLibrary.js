@@ -1,4 +1,4 @@
-const URL_FETCH = 'http://localhost:3001/';
+const URL_FETCH = 'https://gamelibrary5713.herokuapp.com/';
 const APLICATION = 'application/json';
 
 async function createUser({
