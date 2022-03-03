@@ -180,7 +180,7 @@ async function getUserGames(token, page, id) {
   }
 }
 
-async function updateUser({
+async function updateUser(token, {
   name, lastName, password, avatar,
 }) {
   try {
@@ -189,6 +189,7 @@ async function updateUser({
       headers: {
         Accept: APLICATION,
         'Content-Type': APLICATION,
+        Authorization: token,
       },
       body: JSON.stringify({
         name,

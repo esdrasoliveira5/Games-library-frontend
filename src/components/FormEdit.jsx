@@ -95,8 +95,9 @@ function FormEdit() {
   async function updateUser() {
     const validation = registerValues(registerInfo);
     if (validation === 'Criando Usuario') {
-      const result = await GameLibrary.updateUser(registerInfo);
-      if (result.token) {
+      const localResponse = JSON.parse(localStorage.getItem('game-library'));
+      const result = await GameLibrary.updateUser(localResponse.token, registerInfo);
+      if (result.id) {
         setLogged({
           ...logged,
           name: registerInfo.name,
@@ -151,6 +152,7 @@ function FormEdit() {
           type="text"
           name="email"
           value={email}
+          disabled
           placeholder="Email"
           onChange={(event) => handleInfo(event)}
         />
