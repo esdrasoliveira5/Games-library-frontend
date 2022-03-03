@@ -35,19 +35,23 @@ const CardStyled = styled.div`
         width: 100%;
         height: 100%;
         opacity: 0;
-        font-size: 20px;
+        font-size: 22px;
         transition: all .5s ease-in-out;
         text-decoration: none;
         color: #161A1D;
       }
       button:hover {
         opacity: 100;
-        background-color: rgb(237, 242, 244,0.4);
+        background-color: rgb(237, 242, 244,0.8);
         cursor: pointer;
+      }
+      p {
+        text-align: center;
+        width: 80%;
       }
   }
   div:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
 `;
 

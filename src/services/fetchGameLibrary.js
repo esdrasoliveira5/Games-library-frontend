@@ -1,5 +1,6 @@
 const URL_FETCH = 'http://localhost:3001/';
 const APLICATION = 'application/json';
+
 async function createUser({
   name, lastName, email, password, avatar,
 }) {
@@ -179,6 +180,48 @@ async function getUserGames(token, page, id) {
   }
 }
 
+async function updateUser({
+  name, lastName, password, avatar,
+}) {
+  try {
+    const response = await fetch(`${URL_FETCH}user/update`, {
+      method: 'PUT',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+      },
+      body: JSON.stringify({
+        name,
+        lastName,
+        password,
+        avatar,
+      }),
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    return { error };
+  }
+}
+
+async function deleteUser(token) {
+  try {
+    const response = await fetch(`${URL_FETCH}user/delete`, {
+      method: 'DELETE',
+      headers: {
+        Accept: APLICATION,
+        'Content-Type': APLICATION,
+        Authorization: token,
+      },
+    });
+    const results = await response.json();
+    return results;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
 export default {
   createUser,
   loginUser,
@@ -189,4 +232,6 @@ export default {
   categoryUpdate,
   removeFromCollection,
   getUserGames,
+  updateUser,
+  deleteUser,
 };

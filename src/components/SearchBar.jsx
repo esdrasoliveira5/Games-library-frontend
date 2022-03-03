@@ -26,7 +26,6 @@ const LabelSearch = styled.label`
   width: 100%;
   input {
     text-decoration: none;
-    text-transform: uppercase;
     background: #fff;
     outline: 0;
     border-radius: 5px 0px 0px 5px;
@@ -64,14 +63,13 @@ const SelectSearch = styled.label`
 const ButtonSearchL = styled.div`
   button {
     text-decoration: none;
-    text-transform: uppercase;
     outline: 0;
     background: #E5383B;
     border: 0;
     border-radius: 5px 0px 0px 5px;
     padding: 10px;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 16px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
@@ -84,14 +82,13 @@ const ButtonSearchL = styled.div`
 const ButtonSearchR = styled.div`
   button {
     text-decoration: none;
-    text-transform: uppercase;
     outline: 0;
     background: #2dc653;
     border: 0;
     border-radius: 0px 5px 5px 0px;
     padding: 10px;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 16px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
@@ -152,7 +149,7 @@ function SearchBar() {
           name="search"
           value={searchValues.search}
           onChange={(event) => handleValues(event)}
-          placeholder="Games"
+          placeholder="Pesquisar"
         />
       </LabelSearch>
       <SelectSearch htmlFor="order">

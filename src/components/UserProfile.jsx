@@ -3,10 +3,10 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import gamesContext from '../context/AppContext';
 import ArrowPagesProfile from './ArrowPagesProfile';
 import GamesCard from './GamesCard';
-// import Square from '../img/square.png';
 import Menu from '../img/Menu.png';
 import Close from '../img/Close.png';
 
@@ -75,6 +75,23 @@ const Sidebar = styled.div`
     cursor: pointer;
     outline: inherit;
   }
+  button:hover {
+    color: #660708;
+    transform: scale(1.1);
+  }
+  a {
+    align-self: baseline;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  a:hover {
+    color: #660708;
+  }
 `;
 
 const ProfileInfo = styled.div`
@@ -87,20 +104,6 @@ const ProfileInfo = styled.div`
       max-width: 200px;
     }
     margin-bottom: 20px;
-
-    /* @media screen and (max-width: 700px) {
-    font-size: 15px;
-    justify-content: space-between;
-    flex-direction: row;
-    width: 60%;
-    max-width: 100%;
-    display: none;
-    img {
-      display: none;
-      padding: 10px;
-      width: 170px;
-    }
-  } */
 `;
 
 const NavCategories = styled.nav`
@@ -108,13 +111,13 @@ const NavCategories = styled.nav`
   flex-direction: column;
   justify-content: space-around;
   height: 200px;
-    
-  /* @media screen and (max-width: 700px) {
-  flex-direction: row;
-  height: 100%;
-  font-size: 15px;
-  justify-content: space-around;
-} */
+  button {
+    transition: transform .2s;
+  }
+  button:hover {
+    color: #660708;
+    transform: scale(1.2);
+  }
 `;
 
 const Content = styled.div`
@@ -171,11 +174,11 @@ function UserProfile({ categories }) {
             <h1>{logged.name}</h1>
             <h3>{logged.lastName}</h3>
             <h4>{logged.email}</h4>
-            <button type="button">Editar</button>
+            <Link to="/profile/edit">Editar</Link>
           </div>
         </ProfileInfo>
         <NavCategories>
-          <button value="" onClick={(event) => handleCategories(event)} type="button" key="0">Todos os Games</button>
+          <button value="" onClick={(event) => handleCategories(event)} type="button" key="0">Todos os games</button>
           {
             categories.map(({ name, id }) => <button value={id} onClick={(event) => handleCategories(event)} type="button" key={id}>{name}</button>)
           }
